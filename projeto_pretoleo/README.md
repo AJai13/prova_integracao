@@ -1,0 +1,1 @@
+Desenvolvimento necessário para avaliação A2 da disciplina de Integração de Sistemas de Software, realizada no dia 28/05.

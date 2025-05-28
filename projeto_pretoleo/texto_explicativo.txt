@@ -1,0 +1,42 @@
+# Comandos para rodar as APIs:
+- docker-compose:
+docker-compose up -d
+
+- Node: 
+node app.js
+npm install
+npm run start
+
+- Python: 
+* foi criada uma virtual env para instalar as dependências.
+python3 -m venv venv (linux)
+python -m venv venv (windows)
+
+para ativar:
+source venv/bin/activate (linux)
+.\venv\Scripts\activate (windows)
+
+pip install -r requirements.txt
+
+python app.py
+
+- PHP: 
+php -S localhost:8000
+
+
+# Explicação:
+
+- API Node: 
+retorna dados simulados de sensores de temperatura e pressão. Os dados são armazenados em cache com Redis. Envia um alerta via HTTP para a API python.
+
+- API Python:
+recebe os alertas da API node e armazena em uma lista, que também é cacheada com Redis. Também recebe mensagens da fila RabbitMQ, enviadas pela API php.
+
+- API PHP: 
+simula uma lista de equipamentos e envia mensagens para a API python usando RabbitMQ. Não utiliza cache.
+
+- Redis: 
+usado para cache nos dados da API node e nos eventos da API python. 
+
+- RabbitMQ: 
+usado como mensageria entre a API php e a API python para enviar uma mensagem .
